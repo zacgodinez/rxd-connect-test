@@ -52,7 +52,7 @@ const Home: NextPage = () => {
                 {
                   dAppName: "Radix dApp",
                   dAppDefinitionAddress:
-                    "account_tdx_b_1pzv5m8xqy39jmjkk60jluwhrctcs4qpafrxs7rr54jwq0899y3",
+                    "account_tdx_c_1pxdceeqqfh9m4mt45cc0tqntyc5n87y4ze02p002yweq2y94zg",
                 },
                 (requestData) => {
                   requestData({
