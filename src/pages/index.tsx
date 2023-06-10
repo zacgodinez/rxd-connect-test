@@ -60,7 +60,7 @@ const Home: NextPage = () => {
                   });
                 },
                 {
-                  networkId: 34,
+                  networkId: 12,
                 }
               )}
             >
