@@ -27,6 +27,12 @@ declare global {
 const Home: NextPage = () => {
   const [mounted, setIsMounted] = useState(false);
 
+  const accounts = useAccounts();
+  const persona = usePersona();
+  const requestData = useRequestData();
+  const sendTransaction = useSendTransaction();
+  const connected = useConnected();
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -71,6 +77,77 @@ const Home: NextPage = () => {
                     <div className="card">
                       <radix-connect-button></radix-connect-button>
                     </div>
+                  </div>
+                  {connected && (
+                    <div style={{ marginBottom: 25 }}>
+                      <h2>Persona: {persona?.label}</h2>
+                    </div>
+                  )}
+                  {connected && (
+                    <div style={{ marginBottom: 25 }}>
+                      <h2>Accounts:</h2>
+                      {accounts.map((account) => (
+                        <div key={account.appearanceId}>{account.label}</div>
+                      ))}
+                    </div>
+                  )}
+                  <div
+                    style={{
+                      textAlign: "center",
+                      display: "inline-block",
+                      width: 200,
+                    }}
+                  >
+                    <button
+                      className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+                      onClick={() =>
+                        requestData({
+                          accounts: {
+                            quantifier: "exactly",
+                            quantity: 2,
+                            oneTime: true,
+                          },
+                        }).map(({ accounts }) => {
+                          alert(`Got wallet response!
+            ${JSON.stringify(accounts, null, 2)}`);
+                        })
+                      }
+                    >
+                      Request data
+                    </button>
+
+                    {connected && (
+                      <button
+                        style={{
+                          display: "block",
+                          marginBottom: 10,
+                          width: "100%",
+                        }}
+                        onClick={() =>
+                          sendTransaction(`
+CREATE_FUNGIBLE_RESOURCE
+    18u8
+    Map<String, String>(
+        "name", "MyResource",                                        # Resource Name
+        "symbol", "RSRC",                                            # Resource Symbol
+        "description", "A very innovative and important resource"    # Resource Description
+    ) 
+    Map<Enum, Tuple>(
+        Enum("ResourceMethodAuthKey::Withdraw"), Tuple(Enum("AccessRule::AllowAll"), Enum("AccessRule::DenyAll")),
+        Enum("ResourceMethodAuthKey::Deposit"), Tuple(Enum("AccessRule::AllowAll"), Enum("AccessRule::DenyAll"))
+    )
+    Some(Decimal("500000"));
+
+  CALL_METHOD
+    ComponentAddress("${accounts[0].address}") 
+    "deposit_batch"
+    Expression("ENTIRE_WORKTOP");
+`)
+                        }
+                      >
+                        Send transaction
+                      </button>
+                    )}
                   </div>
                   <div className="grid hidden grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
                     <Link
