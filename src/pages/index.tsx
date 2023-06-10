@@ -5,7 +5,7 @@ import Head from "next/head";
 import Link from "next/link";
 
 import { RadixDappToolkit } from "@radixdlt/radix-dapp-toolkit";
-import { RdtProvider } from "./RdtProvider";
+import { RdtProvider } from "../components/RdtProvider";
 
 import { useAccounts } from "../hooks/useAccounts";
 import { useRequestData } from "../hooks/useRequestData";
@@ -139,7 +139,9 @@ CREATE_FUNGIBLE_RESOURCE
     Some(Decimal("500000"));
 
   CALL_METHOD
-    ComponentAddress("${accounts[0].address}") 
+    ComponentAddress("${
+      accounts && accounts[0]?.address ? accounts[0]?.address : ""
+    }") 
     "deposit_batch"
     Expression("ENTIRE_WORKTOP");
 `)
