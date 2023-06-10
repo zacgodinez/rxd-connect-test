@@ -50,7 +50,7 @@ const Home: NextPage = () => {
             <RdtProvider
               value={RadixDappToolkit(
                 {
-                  dAppName: "Radix dApp",
+                  dAppName: "zgod",
                   dAppDefinitionAddress:
                     "account_tdx_c_1pxdceeqqfh9m4mt45cc0tqntyc5n87y4ze02p002yweq2y94zg",
                 },
