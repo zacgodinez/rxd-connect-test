@@ -1,15 +1,10 @@
-import "./globalStyle.css";
-
-import { clsx } from "clsx";
+import { type AppProps } from "next/app";
+import { useEffect, useState } from "react";
 import { type Metadata } from "next";
 import { siteConfig } from "@/config/site";
-
-import { fontSans } from "@/lib/fonts";
 import { ThemeProvider } from "@/components/theme-provider";
 
-interface RootLayoutProps {
-  children: React.ReactNode;
-}
+import "@/styles/global-style.css";
 
 export const metadata: Metadata = {
   title: {
@@ -66,29 +61,19 @@ export const metadata: Metadata = {
   // manifest: `${siteConfig.url}/site.webmanifest`,
 };
 
-export default function RootLayout({ children }: RootLayoutProps) {
+function App({ Component, pageProps }: AppProps) {
+  const [isServer, setIsServer] = useState(true);
+  useEffect(() => {
+    setIsServer(false);
+  }, []);
+  if (isServer) return null;
+
   return (
-    <>
-      <html lang="en" suppressHydrationWarning>
-        <head />
-        <body
-          className={clsx(
-            "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
-          )}
-        >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="relative flex min-h-screen flex-col">
-              {/* <SiteHeader /> */}
-              <div className="flex-1">{children}</div>
-              {/* <SiteFooter /> */}
-            </div>
-          </ThemeProvider>
-          {/* <StyleSwitcher />
-          <Analytics />
-          <Toaster /> */}
-        </body>
-      </html>
-    </>
+    <div suppressHydrationWarning>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        {typeof window === "undefined" ? null : <Component {...pageProps} />}
+      </ThemeProvider>
+    </div>
   );
 }
+export default App;

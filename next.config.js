@@ -1,7 +1,4 @@
 
-// import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin'
-// import million from 'million/compiler';
-// import { withContentlayer } from 'next-contentlayer'
 const million = require("million/compiler");
 const { withContentlayer } = require("next-contentlayer");
 const { createVanillaExtractPlugin } = require("@vanilla-extract/next-plugin");
@@ -11,7 +8,7 @@ const withVanillaExtract = createVanillaExtractPlugin();
 /** @type {import("next").NextConfig} */
 const config = {
   experimental: {
-    appDir: true,
+    appDir: false,
   },
   reactStrictMode: true,
   swcMinify: true,
@@ -25,6 +22,15 @@ const config = {
   i18n: {
     locales: ["en"],
     defaultLocale: "en",
+  },
+  async rewrites() {
+    return [
+      // Rewrite everything else to use `pages/index`
+      {
+        source: '/:path*',
+        destination: '/',
+      },
+    ];
   },
 };
 
