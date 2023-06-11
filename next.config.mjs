@@ -6,6 +6,7 @@
 
 import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin'
 import million from 'million/compiler';
+import { withContentlayer } from 'next-contentlayer'
 
 const withVanillaExtract = createVanillaExtractPlugin();
 
@@ -28,4 +29,4 @@ const config = {
 
 const nextConfig = withVanillaExtract(config);
 
-export default million.next(nextConfig);
+export default withContentlayer(million.next(nextConfig));

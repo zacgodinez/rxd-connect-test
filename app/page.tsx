@@ -84,11 +84,19 @@ export default function Home() {
                         </code>
                         .{" "}
                         <Link
-                          href="/terms"
+                          href="/privacy"
                           className="font-medium text-primary underline underline-offset-4"
                         >
-                          Terms
+                          Privacy
                         </Link>{" "}
+                        <div>
+                          <Link
+                            href="/terms"
+                            className="font-medium text-primary underline underline-offset-4"
+                          >
+                            Terms
+                          </Link>{" "}
+                        </div>
                         to learn more.
                       </p>
                     </div>
