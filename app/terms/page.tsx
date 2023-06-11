@@ -1,14 +1,36 @@
+"use client";
+
 import * as React from "react";
-// import { compareDesc, format, parseISO } from "date-fns";
-// import { allPosts, Post } from "contentlayer/generated";
+import { notFound } from "next/navigation";
+// import { useLiveReload } from "next-contentlayer/hooks";
+import { allDocs } from "contentlayer/generated";
+import { Mdx } from "@/components/mdx-components";
 import Link from "next/link";
 
-export default function TermsPage() {
-  // const posts = allPosts.sort((a, b) =>
-  //   compareDesc(new Date(a.date), new Date(b.date))
-  // );
+interface DocPageProps {
+  params: {
+    slug: string[];
+  };
+}
 
-  // console.log(999, posts);
+function getDocFromParams({ params }: DocPageProps) {
+  const slug = params.slug?.join("/") || "";
+  const doc = allDocs.find((doc) => doc.slugAsParams === slug);
+
+  if (!doc) {
+    null;
+  }
+
+  return doc;
+}
+
+export default function TermsPage() {
+  // useLiveReload(); // this only runs during development and has no impact on production
+  const doc = getDocFromParams({ params: { slug: ["terms"] } });
+
+  if (!doc) {
+    notFound();
+  }
 
   return (
     <div className="container">
@@ -29,6 +51,7 @@ export default function TermsPage() {
             </Link>{" "}
             to learn more.
           </p>
+          <Mdx code={doc.body.code} />
         </div>
       </div>
     </div>
