@@ -79,7 +79,6 @@ export default function Home() {
                       <h2 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
                         Theme
                       </h2>
-
                       <Button onClick={() => setTheme("light")}>
                         Theme light
                       </Button>
