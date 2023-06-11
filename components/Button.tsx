@@ -4,9 +4,9 @@ import { block } from "million/react";
 
 import * as styles from "./Button.css";
 
-const ButtonComp = ({ children }: any) => {
+const ButtonComp = ({ children, ...rest }: any) => {
   return (
-    <button onClick={() => console.log("click")} className={styles.button}>
+    <button className={styles.button} {...rest}>
       {children}
     </button>
   );

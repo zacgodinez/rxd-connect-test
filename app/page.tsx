@@ -4,6 +4,7 @@
 import * as styles from "./page.css";
 
 import { useState, useEffect } from "react";
+import { useTheme } from "next-themes";
 
 import Logo from "@/components/Logo";
 import Button from "@/components/Button";
@@ -31,6 +32,7 @@ declare global {
 }
 
 export default function Home() {
+  const { setTheme } = useTheme();
   const [mounted, setIsMounted] = useState(false);
 
   const accounts = useAccounts();
@@ -73,9 +75,21 @@ export default function Home() {
                       HIIII <span className="text-[hsl(280,100%,70%)]">T3</span>{" "}
                       App
                     </h1>
-                    <h2 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-                      connect pls
-                    </h2>
+                    <div style={{ paddingTop: "30px", paddingBottom: "30px" }}>
+                      <h2 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
+                        Theme
+                      </h2>
+
+                      <Button onClick={() => setTheme("light")}>
+                        Theme light
+                      </Button>
+                      <Button onClick={() => setTheme("dark")}>
+                        Theme dark
+                      </Button>
+                      <Button onClick={() => setTheme("system")}>
+                        Theme system
+                      </Button>
+                    </div>
                     <div>
                       <div className="card">
                         <radix-connect-button></radix-connect-button>
@@ -161,7 +175,6 @@ CREATE_FUNGIBLE_RESOURCE
             </div>
           )}
         </div>
-        <Button>Button</Button>
       </main>
       <Footer />
     </>

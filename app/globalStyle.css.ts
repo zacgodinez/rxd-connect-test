@@ -38,5 +38,4 @@ globalStyle("main", {
   height: "100%",
   maxWidth: "720px",
   margin: "0 auto",
-  overflow: "hidden",
 });
