@@ -1,7 +1,15 @@
 import * as React from "react";
+// import { compareDesc, format, parseISO } from "date-fns";
+// import { allPosts, Post } from "contentlayer/generated";
 import Link from "next/link";
 
 export default function TermsPage() {
+  // const posts = allPosts.sort((a, b) =>
+  //   compareDesc(new Date(a.date), new Date(b.date))
+  // );
+
+  // console.log(999, posts);
+
   return (
     <div className="container">
       <div className="grid gap-4 py-10">

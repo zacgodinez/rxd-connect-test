@@ -1,7 +1,7 @@
 /* eslint-disable */
 "use client";
 
-import { block } from "million/react";
+// import { block } from "million/react";
 
 import * as styles from "./Button.css";
 
@@ -13,6 +13,6 @@ const ButtonComp = ({ children, onClick }: { children: any; onClick: any }) => {
   );
 };
 
-const Button = block(ButtonComp);
+// const Button = block(ButtonComp);
 
-export default Button;
+export default ButtonComp;

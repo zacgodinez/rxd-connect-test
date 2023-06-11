@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
-    "dev": "next dev",
+    "dev": "concurrently \"contentlayer dev\" \"next dev -p 3001\"",
+    "build": "contentlayer build && next build",
     "lint": "next lint",
     "start": "next start",
     "postbuild": "next-sitemap"
@@ -12,6 +12,9 @@
   "dependencies": {
     "@radixdlt/radix-dapp-toolkit": "^0.2.0",
     "clsx": "^1.2.1",
+    "concurrently": "^8.2.0",
+    "contentlayer": "^0.3.3",
+    "date-fns": "^2.30.0",
     "million": "^2.4.4",
     "next": "^13.4.2",
     "next-contentlayer": "^0.3.3",
