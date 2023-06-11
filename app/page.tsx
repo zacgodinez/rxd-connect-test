@@ -2,6 +2,7 @@
 "use client";
 
 import * as styles from "./page.css";
+import Link from "next/link";
 
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
@@ -75,7 +76,31 @@ export default function Home() {
                       HIIII <span className="text-[hsl(280,100%,70%)]">T3</span>{" "}
                       App
                     </h1>
-                    <div style={{ paddingTop: "30px", paddingBottom: "30px" }}>
+                    <div>
+                      <p className="text-sm font-medium leading-none">
+                        You can customize the theme using{" "}
+                        <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold text-foreground">
+                          CSS variables
+                        </code>
+                        .{" "}
+                        <Link
+                          href="/terms"
+                          className="font-medium text-primary underline underline-offset-4"
+                        >
+                          Terms
+                        </Link>{" "}
+                        to learn more.
+                      </p>
+                    </div>
+                    <div
+                      style={{
+                        paddingTop: "30px",
+                        paddingBottom: "30px",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "15px",
+                      }}
+                    >
                       <h2 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
                         Theme
                       </h2>
