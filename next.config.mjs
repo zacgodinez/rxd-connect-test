@@ -1,9 +1,11 @@
+
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
  */
 
 import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin'
+import million from 'million/compiler';
 
 const withVanillaExtract = createVanillaExtractPlugin();
 
@@ -23,4 +25,7 @@ const config = {
   },
 };
 
-export default withVanillaExtract(config);
+
+const nextConfig = withVanillaExtract(config);
+
+export default million.next(nextConfig);
