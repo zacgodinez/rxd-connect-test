@@ -70,6 +70,14 @@ const Home: NextPage = () => {
                     HIIII <span className="text-[hsl(280,100%,70%)]">T3</span>{" "}
                     App
                   </h1>
+                  <div>
+                    <iframe
+                      src="https://radixcharts.com/"
+                      title="Radix Charts"
+                      width="1200px"
+                      height="1000px"
+                    />
+                  </div>
                   <h2 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
                     connect pls
                   </h2>
