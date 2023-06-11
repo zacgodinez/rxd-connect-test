@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { notFound } from "next/navigation";
-// import { useLiveReload } from "next-contentlayer/hooks";
 import { allDocs } from "contentlayer/generated";
 import { Mdx } from "@/components/mdx-components";
 import Link from "next/link";
@@ -25,7 +24,6 @@ function getDocFromParams({ params }: DocPageProps) {
 }
 
 export default function TermsPage() {
-  // useLiveReload(); // this only runs during development and has no impact on production
   const doc = getDocFromParams({ params: { slug: ["terms"] } });
 
   if (!doc) {
