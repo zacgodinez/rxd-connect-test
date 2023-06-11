@@ -2,7 +2,10 @@
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
  */
-await import("./src/env.mjs");
+
+import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin'
+
+const withVanillaExtract = createVanillaExtractPlugin();
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -19,4 +22,5 @@ const config = {
     defaultLocale: "en",
   },
 };
-export default config;
+
+export default withVanillaExtract(config);

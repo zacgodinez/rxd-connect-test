@@ -1,4 +1,4 @@
-import { RdtContext } from "./rdt-context";
+import { RdtContext } from "@/components/rdt-context";
 import { type Rdt } from "./types";
 
 export const RdtProvider = (
