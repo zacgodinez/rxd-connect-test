@@ -3,10 +3,15 @@ import React from "react";
 import NextLink from "next/link";
 
 export default function Settings(props: any) {
+  const { pageSeo } = props;
+
   return (
     <div>
-      <p>hello, this is the settings</p>
-      <pre>{props}</pre>
+      <p>
+        hello, this is the settings
+        <br />
+        <span style={{ color: "red" }}>{pageSeo.test}</span>
+      </p>
       <NextLink href="/">Home</NextLink>
     </div>
   );
@@ -14,7 +19,7 @@ export default function Settings(props: any) {
 
 export const getStaticProps = () => {
   const pageSeo = {
-    test: "hello",
+    test: "hello from settings",
   };
 
   return {
