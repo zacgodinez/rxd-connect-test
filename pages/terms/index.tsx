@@ -34,7 +34,7 @@ export default function TermsPage(props: { message: string; doc: any }) {
   );
 }
 
-export const getServerSideProps = () => {
+export const getStaticProps = () => {
   const doc = getDocFromParams({ params: { slug: ["terms"] } });
 
   return {
