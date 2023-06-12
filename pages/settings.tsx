@@ -1,15 +1,25 @@
-import React from 'react';
-import NextLink from 'next/link';
+/* eslint-disable */
+import React from "react";
+import NextLink from "next/link";
 
-export default function App(props: { message: string }) {
+export default function Settings(props: any) {
   return (
     <div>
-      <p>{props.message}</p>
+      <p>hello, this is the settings</p>
+      <pre>{props}</pre>
       <NextLink href="/">Home</NextLink>
     </div>
   );
 }
 
-export const getServerSideProps = () => {
-  return { props: { message: 'This page is rendered on the server!' } };
+export const getStaticProps = () => {
+  const pageSeo = {
+    test: "hello",
+  };
+
+  return {
+    props: {
+      pageSeo,
+    },
+  };
 };
