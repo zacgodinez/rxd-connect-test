@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 
-import Logo from "@/components/Logo";
+import LogoTest from "@/components/logo-test";
 import Button from "@/components/Button";
 import Footer from "@/components/Footer";
 
@@ -66,6 +66,9 @@ export default function App() {
               <NextLink href="/terms">Terms (SSR)</NextLink>
             </li>
           </ul>
+          <div>
+            <LogoTest />
+          </div>
           <div
             style={{
               paddingTop: "30px",

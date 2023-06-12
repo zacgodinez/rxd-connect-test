@@ -1,7 +1,7 @@
 import Image from "next/image";
-import * as styles from "./Logo.css";
+import * as styles from "./logo-test.css";
 
-export default function Logo() {
+export default function LogoTest() {
   return (
     <div className={styles.container}>
       <Image
