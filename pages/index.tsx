@@ -16,7 +16,7 @@ import { useSendTransaction } from "@/hooks/useSendTransaction";
 import { useConnected } from "@/hooks/useConnected";
 import { usePersona } from "@/hooks/usePersona";
 
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 import NextLink from "next/link";
 import * as styles from "@/styles/page.css";
 
