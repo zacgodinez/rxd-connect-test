@@ -33,17 +33,12 @@ declare global {
 
 export default function App() {
   const { setTheme } = useTheme();
-  const [mounted, setIsMounted] = useState(false);
 
   const accounts = useAccounts();
   const persona = usePersona();
   const requestData = useRequestData();
   const sendTransaction = useSendTransaction();
   const connected = useConnected();
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   return (
     <main className={styles.page}>
@@ -85,58 +80,57 @@ export default function App() {
             <Button onClick={() => setTheme("dark")}>Theme dark</Button>
             <Button onClick={() => setTheme("system")}>Theme system</Button>
           </div>
-          {mounted && (
-            <div>
-              <RdtProvider
-                value={RadixDappToolkit(
-                  {
-                    dAppName: "zgod",
-                    dAppDefinitionAddress:
-                      "account_tdx_c_1pxdceeqqfh9m4mt45cc0tqntyc5n87y4ze02p002yweq2y94zg",
-                  },
-                  (requestData) => {
-                    requestData({
-                      accounts: { quantifier: "atLeast", quantity: 1 },
-                    });
-                  },
-                  {
-                    networkId: 12,
-                  }
-                )}
-              >
-                <div>
-                  <div className="card">
-                    <radix-connect-button></radix-connect-button>
-                  </div>
+          <div>
+            <RdtProvider
+              value={RadixDappToolkit(
+                {
+                  dAppName: "zgod",
+                  dAppDefinitionAddress:
+                    "account_tdx_c_1pxdceeqqfh9m4mt45cc0tqntyc5n87y4ze02p002yweq2y94zg",
+                },
+                (requestData) => {
+                  requestData({
+                    accounts: { quantifier: "atLeast", quantity: 1 },
+                  });
+                },
+                {
+                  networkId: 12,
+                }
+              )}
+            >
+              <div>
+                <div className="card">
+                  <radix-connect-button></radix-connect-button>
                 </div>
-                <div>
-                  <button
-                    className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
-                    onClick={() =>
-                      requestData({
-                        accounts: {
-                          quantifier: "exactly",
-                          quantity: 2,
-                          oneTime: true,
-                        },
-                      }).map(({ accounts }) => {
-                        alert(`Got wallet response!
+              </div>
+              <div>
+                <button
+                  className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+                  onClick={() =>
+                    requestData({
+                      accounts: {
+                        quantifier: "exactly",
+                        quantity: 2,
+                        oneTime: true,
+                      },
+                    }).map(({ accounts }) => {
+                      alert(`Got wallet response!
             ${JSON.stringify(accounts, null, 2)}`);
-                      })
-                    }
-                  >
-                    Request data
-                  </button>
+                    })
+                  }
+                >
+                  Request data
+                </button>
 
-                  {connected && (
-                    <button
-                      style={{
-                        display: "block",
-                        marginBottom: 10,
-                        width: "100%",
-                      }}
-                      onClick={() =>
-                        sendTransaction(`
+                {connected && (
+                  <button
+                    style={{
+                      display: "block",
+                      marginBottom: 10,
+                      width: "100%",
+                    }}
+                    onClick={() =>
+                      sendTransaction(`
 CREATE_FUNGIBLE_RESOURCE
     18u8
     Map<String, String>(
@@ -157,15 +151,14 @@ CREATE_FUNGIBLE_RESOURCE
     "deposit_batch"
     Expression("ENTIRE_WORKTOP");
 `)
-                      }
-                    >
-                      Send transaction
-                    </button>
-                  )}
-                </div>
-              </RdtProvider>
-            </div>
-          )}
+                    }
+                  >
+                    Send transaction
+                  </button>
+                )}
+              </div>
+            </RdtProvider>
+          </div>
 
           <Routes>
             <Route path="/about" element={<h1>About</h1>} />
