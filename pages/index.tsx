@@ -32,6 +32,7 @@ declare global {
 }
 
 export default function App() {
+  const test = true;
   const { setTheme } = useTheme();
 
   const accounts = useAccounts();
@@ -44,6 +45,12 @@ export default function App() {
     <main className={styles.page}>
       <Router>
         <div>
+          <div>
+            <div className={styles.radixButtonWrapper}>
+              <radix-connect-button></radix-connect-button>
+              <button>testing</button>
+            </div>
+          </div>
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -61,6 +68,7 @@ export default function App() {
               <NextLink href="/terms">Terms (SSR)</NextLink>
             </li>
           </ul>
+
           <div>
             <LogoTest />
           </div>
@@ -98,11 +106,6 @@ export default function App() {
                 }
               )}
             >
-              <div>
-                <div className="card">
-                  <radix-connect-button></radix-connect-button>
-                </div>
-              </div>
               <div>
                 <button
                   className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
@@ -158,6 +161,13 @@ CREATE_FUNGIBLE_RESOURCE
                 )}
               </div>
             </RdtProvider>
+          </div>
+
+          <div>
+            <p>
+              <pre>hello</pre>
+              <pre>hello</pre>
+            </p>
           </div>
 
           <Routes>

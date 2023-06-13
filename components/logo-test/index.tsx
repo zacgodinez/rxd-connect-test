@@ -11,6 +11,9 @@ export default function LogoTest() {
         height={180}
         alt="Vanilla Extract logo"
       />
+      <ul>
+        <li>he</li>
+      </ul>
     </div>
   );
 }
