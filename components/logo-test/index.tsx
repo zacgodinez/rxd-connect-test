@@ -6,14 +6,11 @@ export default function LogoTest() {
     <div className={styles.container}>
       <Image
         priority
-        src="/logo.png"
-        width={152}
-        height={180}
+        src="/logo.webp"
+        width={100}
+        height={120}
         alt="Vanilla Extract logo"
       />
-      <ul>
-        <li>he</li>
-      </ul>
     </div>
   );
 }
