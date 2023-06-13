@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
+import Head from "next/head";
 
 import LogoTest from "@/components/logo-test";
 import Button from "@/components/Button";
@@ -42,52 +43,19 @@ export default function App() {
   const connected = useConnected();
 
   return (
-    <main className={styles.page}>
-      <Router>
-        <div>
-          <div>
-            <div className={styles.radixButtonWrapper}>
-              <radix-connect-button></radix-connect-button>
-              <button>testing</button>
-            </div>
-          </div>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/topics">Topics</Link>
-            </li>
-            <li>
-              <NextLink href="/settings">Settings (SSR)</NextLink>
-            </li>
-            <li>
-              <NextLink href="/terms">Terms (SSR)</NextLink>
-            </li>
-          </ul>
-
-          <div>
-            <LogoTest />
-          </div>
-          <div
-            style={{
-              paddingTop: "30px",
-              paddingBottom: "30px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "15px",
-            }}
-          >
-            <h2 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-              Theme
-            </h2>
-            <Button onClick={() => setTheme("light")}>Theme light</Button>
-            <Button onClick={() => setTheme("dark")}>Theme dark</Button>
-            <Button onClick={() => setTheme("system")}>Theme system</Button>
-          </div>
+    <>
+      <Head>
+        <title>
+          iPhone 12 XS Max For Sale in Colorado - Big Discounts | Apple
+        </title>
+        <meta
+          name="description"
+          content="Check out iPhone 12 XR Pro and iPhone 12 Pro Max. Visit your local store and for expert advice."
+          key="desc"
+        />
+      </Head>
+      <main className={styles.page}>
+        <Router>
           <div>
             <RdtProvider
               value={RadixDappToolkit(
@@ -107,76 +75,64 @@ export default function App() {
               )}
             >
               <div>
-                <button
-                  className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
-                  onClick={() =>
-                    requestData({
-                      accounts: {
-                        quantifier: "exactly",
-                        quantity: 2,
-                        oneTime: true,
-                      },
-                    }).map(({ accounts }) => {
-                      alert(`Got wallet response!
-            ${JSON.stringify(accounts, null, 2)}`);
-                    })
-                  }
-                >
-                  Request data
-                </button>
-
-                {connected && (
-                  <button
-                    style={{
-                      display: "block",
-                      marginBottom: 10,
-                      width: "100%",
-                    }}
-                    onClick={() =>
-                      sendTransaction(`
-CREATE_FUNGIBLE_RESOURCE
-    18u8
-    Map<String, String>(
-        "name", "MyResource",                                        # Resource Name
-        "symbol", "RSRC",                                            # Resource Symbol
-        "description", "A very innovative and important resource"    # Resource Description
-    )
-    Map<Enum, Tuple>(
-        Enum("ResourceMethodAuthKey::Withdraw"), Tuple(Enum("AccessRule::AllowAll"), Enum("AccessRule::DenyAll")),
-        Enum("ResourceMethodAuthKey::Deposit"), Tuple(Enum("AccessRule::AllowAll"), Enum("AccessRule::DenyAll"))
-    )
-    Some(Decimal("500000"));
-
-  CALL_METHOD
-    ComponentAddress("${
-      accounts && accounts[0]?.address ? accounts[0]?.address : ""
-    }")
-    "deposit_batch"
-    Expression("ENTIRE_WORKTOP");
-`)
-                    }
-                  >
-                    Send transaction
-                  </button>
-                )}
+                <div className={styles.radixButtonWrapper}>
+                  <radix-connect-button className="test-class-rdx-btn"></radix-connect-button>
+                </div>
               </div>
+              <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/about">About</Link>
+                </li>
+                <li>
+                  <Link to="/topics">Topics</Link>
+                </li>
+                <li>
+                  <NextLink href="/settings">Settings (SSR)</NextLink>
+                </li>
+                <li>
+                  <NextLink href="/terms">Terms (SSR)</NextLink>
+                </li>
+              </ul>
+              <div>
+                <LogoTest />
+              </div>
+
+              <div
+                style={{
+                  paddingTop: "30px",
+                  paddingBottom: "30px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "15px",
+                }}
+              >
+                <h2 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
+                  Theme
+                </h2>
+                <Button onClick={() => setTheme("light")}>Theme light</Button>
+                <Button onClick={() => setTheme("dark")}>Theme dark</Button>
+                <Button onClick={() => setTheme("system")}>Theme system</Button>
+              </div>
+
+              <div>
+                <p>
+                  <pre>hello</pre>
+                  <div>hello</div>
+                </p>
+              </div>
+
+              <Routes>
+                <Route path="/about" element={<h1>About</h1>} />
+                <Route path="/topics" element={<h1>Topics</h1>} />
+                <Route path="/" element={<h1>Home</h1>} />
+              </Routes>
             </RdtProvider>
           </div>
-
-          <div>
-            <p>
-              <pre>hello</pre>
-              <pre>hello</pre>
-            </p>
-          </div>
-
-          <Routes>
-            <Route path="/about" element={<h1>About</h1>} />
-            <Route path="/topics" element={<h1>Topics</h1>} />
-            <Route path="/" element={<h1>Home</h1>} />
-          </Routes>
-        </div>
-      </Router>
-    </main>
+        </Router>
+      </main>
+    </>
   );
 }

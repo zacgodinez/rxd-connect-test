@@ -41,4 +41,9 @@ export const radixButtonWrapper = style({
   paddingTop: "10px",
   gap: "1em",
   justifyContent: "flex-end",
+  height: "70px",
+});
+
+export const routesWrapper = style({
+  display: "block",
 });
