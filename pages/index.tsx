@@ -65,7 +65,12 @@ export default function App() {
       <main className={styles.page}>
         <Router>
           <div>
-            <RdtProvider
+            <p>testin</p>
+            <h1>h1 test</h1>
+            <div>
+              <LogoTest />
+            </div>
+            {/* <RdtProvider
               value={RadixDappToolkit(
                 {
                   dAppName: "zgod",
@@ -137,7 +142,7 @@ export default function App() {
                 <Route path="/topics" element={<h1>Topics</h1>} />
                 <Route path="/" element={<h1>Home</h1>} />
               </Routes>
-            </RdtProvider>
+            </RdtProvider> */}
           </div>
         </Router>
       </main>
